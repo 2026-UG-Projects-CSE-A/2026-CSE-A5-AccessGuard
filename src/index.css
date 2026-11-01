@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+/* ── Design Tokens ──────────────────────────────────────────────── */
+@theme {
+  --font-sans: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+
+  /* Navy palette */
+  --color-navy-50:  #f0f4fa;
+  --color-navy-100: #dce6f4;
+  --color-navy-200: #b9cde9;
+  --color-navy-300: #87a8d4;
+  --color-navy-400: #5580be;
+  --color-navy-500: #3460a8;
+  --color-navy-600: #24508e;
+  --color-navy-700: #1b3d72;
+  --color-navy-800: #132d58;
+  --color-navy-900: #0e2145;
+  --color-navy-950: #080f26;
+
+  /* Surface tokens */
+  --color-surface:     #f4f7fb;
+  --color-surface-alt: #eef2f8;
+}
+
+/* ── Base Reset & Global ────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+html, body, #root {
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #f4f7fb;
+  color: #1e293b;
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+
+#root {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Focus Styles ───────────────────────────────────────────────── */
+*:focus-visible {
+  outline: 2px solid #24508e;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ── Custom Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #c9d6ea;
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #87a8d4;
+}
+
+/* ── Typography Utilities ───────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.015em;
+}
+
+/* ── Sidebar Scroll Override ────────────────────────────────────── */
+.sidebar-nav::-webkit-scrollbar {
+  width: 4px;
+}
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.12);
+  border-radius: 99px;
+}
+
+/* ── Smooth Transitions ─────────────────────────────────────────── */
+button, a, input, select, textarea {
+  transition: color 0.15s ease, background-color 0.15s ease,
+              border-color 0.15s ease, box-shadow 0.15s ease,
+              opacity 0.15s ease;
+}
+
+/* ── Card Hover Elevation ───────────────────────────────────────── */
+.card-hover {
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.card-hover:hover {
+  box-shadow: 0 8px 24px rgba(13, 30, 65, 0.12);
+  transform: translateY(-1px);
+}
+
+/* ── Sidebar Gradient Background ────────────────────────────────── */
+.sidebar-gradient {
+  background: linear-gradient(180deg, #0e2145 0%, #080f26 100%);
+}
+
+/* ── Login Page Animated Gradient ───────────────────────────────── */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.login-hero {
+  background: linear-gradient(135deg, #080f26, #0e2145 30%, #1b3d72 65%, #24508e 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 12s ease infinite;
+}
+
+/* ── Stat Card Accent Bar ───────────────────────────────────────── */
+.stat-accent {
+  position: relative;
+  overflow: hidden;
+}
+.stat-accent::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  border-radius: 4px 0 0 4px;
+}
+.stat-accent-blue::before   { background: #24508e; }
+.stat-accent-green::before  { background: #059669; }
+.stat-accent-amber::before  { background: #d97706; }
+.stat-accent-red::before    { background: #dc2626; }
+.stat-accent-purple::before { background: #7c3aed; }
+
+/* ── Fade-in Animation ──────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease both;
+}
+
+/* ── Slide-in Animation ─────────────────────────────────────────── */
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.animate-slide-in {
+  animation: slideInLeft 0.25s ease both;
+}
+
+/* ── Pulse Dot ──────────────────────────────────────────────────── */
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+.pulse-dot {
+  animation: pulseDot 2s ease-in-out infinite;
+}
